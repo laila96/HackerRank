@@ -1,26 +1,32 @@
 import java.io.*;
 import java.util.*;
+import java.lang.*;
 
 public class Solution {
 
     static void isPrime(int[] numbers){
-        
         for(int i=0; i<numbers.length; i++){
-            boolean isprime = true;
-            for(int j=2; j<numbers[i]; j++){
-                if(numbers[i] % j == 0){
-                    isprime = false;
+            boolean prime = true;
+            if (numbers[i] < 2){
+                prime =  false;
+            }
+            double numberDouble = numbers[i];
+            double sqrt = Math.sqrt(numberDouble);
+            for(int j=2; j<sqrt+1; j++){
+                if(numbers[i] == 2){
+                    prime = true;
                     break;
                 }
+                else if(numbers[i] % j == 0){
+                    prime =  false;
+                }
             }
-            if(isprime){
+            if(prime){
                 System.out.println("Prime");
-            } 
-            else {
-                System.out.println("Not prime");
+            } else {
+              System.out.println("Not prime");
             }
-        }
-        
+        } 
     }
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
@@ -29,7 +35,6 @@ public class Solution {
         for(int i =0; i<n ; i++){
             numbers[i] = sc.nextInt();
         }
-        
         isPrime(numbers);
     }
 }
